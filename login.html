@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito - Inovador FRP MSR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D0BCFF',
+                        onPrimary: '#381E72',
+                        background: '#1C1B1F',
+                        surface: '#25242A',
+                        onSurface: '#E6E1E5',
+                        onSurfaceVariant: '#CAC4D0',
+                        error: '#F2B8B5'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-onSurface font-['Roboto'] min-h-screen flex flex-col justify-center px-6">
+
+    <main class="w-full max-w-sm mx-auto flex flex-col gap-6">
+        <div class="text-center">
+            <span class="material-symbols-rounded text-primary text-5xl mb-2">admin_panel_settings</span>
+            <h1 class="text-2xl font-bold tracking-tight">Acesso Restrito</h1>
+            <p class="text-onSurfaceVariant text-sm mt-1">Painel Admin MSR</p>
+        </div>
+
+        <form class="flex flex-col gap-4 bg-surface p-6 rounded-2xl border border-neutral-800 shadow-lg" id="loginForm">
+            <div id="errorMessage" class="text-error text-xs text-center hidden bg-red-500/10 py-2 rounded-xl border border-red-500/20">
+                Credenciais incorretas!
+            </div>
+
+            <!-- E-mail -->
+            <div class="flex flex-col gap-1">
+                <label class="text-xs text-onSurfaceVariant font-medium ml-1">E-mail Administrativo</label>
+                <div class="bg-background flex items-center gap-3 px-4 py-3 rounded-xl border border-neutral-700 focus-within:border-primary">
+                    <span class="material-symbols-rounded text-onSurfaceVariant text-xl">shield_person</span>
+                    <input type="email" id="email" placeholder="seu-email@gmail.com" class="bg-transparent w-full text-sm focus:outline-none text-onSurface" required>
+                </div>
+            </div>
+
+            <!-- Senha -->
+            <div class="flex flex-col gap-1">
+                <label class="text-xs text-onSurfaceVariant font-medium ml-1">Senha de Segurança</label>
+                <div class="bg-background flex items-center gap-3 px-4 py-3 rounded-xl border border-neutral-700 focus-within:border-primary">
+                    <span class="material-symbols-rounded text-onSurfaceVariant text-xl">key</span>
+                    <input type="password" id="password" placeholder="••••••••" class="bg-transparent w-full text-sm focus:outline-none text-onSurface" required>
+                </div>
+            </div>
+
+            <button type="submit" class="bg-primary text-onPrimary w-full py-3 rounded-xl font-bold mt-2 active:scale-95 transition-transform flex justify-center items-center gap-2">
+                <span class="material-symbols-rounded text-xl">login</span>
+                Verificar Credenciais
+            </button>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+
+            // 🔑 SUA VALIDAÇÃO MÁGICA SECRETA
+            if (emailInput === 'alialiamade57@gmail.com' && passwordInput === 'Admin Inovador') {
+                errorDiv.classList.add('hidden');
+                window.location.href = 'dashboard.html'; // Entra no Painel
+            } else {
+                errorDiv.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
